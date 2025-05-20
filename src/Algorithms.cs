@@ -8,6 +8,8 @@ namespace ordenamiento_anton.src
 {
     public static class Algorithms
     {
+        // Public Methods
+        // -----------------------------------------
         public static void BubbleSort(List<int> arr)
         {
             int size = arr.Count(); 
@@ -26,7 +28,7 @@ namespace ordenamiento_anton.src
         }
 
         //Shaker
-        public static void Sacudida(List<int> A)
+        public static void Shaker(List<int> A)
         {
             int N = A.Count;
             int IZQ = 1;
@@ -80,8 +82,62 @@ namespace ordenamiento_anton.src
         }
 
         // Selection
+        public static void SelectionSort(List<int> arr)
+        {
+            int size = arr.Count();
+            for (int i = 0; i < size; i++)
+            {
+                int minIndex = i;
+                for(int j = i + 1; j < size; j++)
+                {
+                    if (arr[j] < arr[minIndex])
+                    {
+                        minIndex = j;
+                    }
+                }
+
+                if(i != minIndex)
+                {
+                    int temp = arr[i];
+                    arr[i] = arr[minIndex];
+                    arr[minIndex] = temp;
+                }
+            }
+        }
 
         // Shell
+        public static void ShellSort(List<int> A)
+        {
+            int N = A.Count;
+            int INT = N;
+            int AUX;
+            bool BAND;
+            int I;
+
+            while (INT > 1)
+            {
+                INT = INT / 2;
+                BAND = true;
+
+                while (BAND)
+                {
+                    BAND = false;
+                    I = 0;
+
+                    while ((I + INT) < N)
+                    {
+                        if (A[I] > A[I + INT])
+                        {
+                            AUX = A[I];
+                            A[I] = A[I + INT];
+                            A[I + INT] = AUX;
+                            BAND = true;
+                        }
+                        I++;
+                    }
+                }
+            }
+        }
 
         // Quick Sort
         public static void QuickSort(List<int> arr)
@@ -92,6 +148,7 @@ namespace ordenamiento_anton.src
         // Heap Sort
 
         // Private Methods
+        // -----------------------------------------
         private static void QuickSort(List<int> arr, int leftIndex, int rightIndex)
         {
             if (leftIndex >= rightIndex) return;
