@@ -146,6 +146,20 @@ namespace ordenamiento_anton.src
         }
 
         // Heap Sort
+        public static void HeapSort(List<int> arr)
+        {
+            int n = arr.Count;
+
+            for (int i = n / 2 - 1; i >= 0; i--)
+                SiftDown(arr, n, i);
+
+            // extraer elementos
+            for (int i = n - 1; i > 0; i--)
+            {
+                Swap(arr, 0, i);
+                SiftDown(arr, i, 0);
+            }
+        }
 
         // Private Methods
         // -----------------------------------------
@@ -178,6 +192,22 @@ namespace ordenamiento_anton.src
             int temp = arr[firstIndex];
             arr[firstIndex] = arr[SecondIndex];
             arr[SecondIndex] = temp;
+        }
+
+        private static void SiftDown(List<int> arr, int heapSize, int root)
+        {
+            int largest = root;
+            int left = 2 * root + 1;
+            int right = 2 * root + 2;
+
+            if (left < heapSize && arr[left] > arr[largest]) largest = left;
+            if (right < heapSize && arr[right] > arr[largest]) largest = right;
+
+            if (largest != root)
+            {
+                Swap(arr, root, largest);
+                SiftDown(arr, heapSize, largest);
+            }
         }
     }
 }
