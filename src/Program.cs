@@ -28,7 +28,6 @@ namespace ordenamiento_anton
 
             foreach (var size in sizes)
             {
-                // prepara los datos base para este tamaño
                 var baseData = Enumerable.Range(0, size)
                                          .Select(_ => rand.Next())
                                          .ToList();
@@ -40,7 +39,7 @@ namespace ordenamiento_anton
 
                 foreach (var kvp in algos)
                 {
-                    var copy = new List<int>(baseData);             // copia limpia
+                    var copy = new List<int>(baseData);
                     var elapsed = Timer.Measure(() => kvp.Value(copy));
                     Console.WriteLine($"{kvp.Key,-12} | {elapsed.TotalMilliseconds,12:N2}");
                 }
